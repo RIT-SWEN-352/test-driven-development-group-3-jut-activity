@@ -16,4 +16,10 @@ class TemperatureTest {
     final Temperature temperature = new Temperature(75.0, Temperature.TemperatureUnit.CELSIUS);
     assertNotNull(temperature);
   }
+  @Test
+  @DisplayName("ctor with just value supplied")
+  void ctor_2() {
+    final Temperature temperature = new Temperature(75.0);
+    assertNotNull(temperature);
+  }
 }
