@@ -30,6 +30,5 @@ public class Temperature {
   }
 
   public Temperature(double value, TemperatureUnit unit) {
-    assert false : "Not yet implemented";
   }
 }
