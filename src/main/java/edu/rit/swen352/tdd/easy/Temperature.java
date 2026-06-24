@@ -25,7 +25,36 @@ package edu.rit.swen352.tdd.easy;
  * </ul>
  */
 public class Temperature {
+  private final double value;
+  private final TemperatureUnit unit;
+
   public enum TemperatureUnit {
     CELSIUS, FAHRENHEIT, KELVIN
+  }
+
+  public Temperature(double value, TemperatureUnit unit) {
+    this.value = value;
+    this.unit = unit;
+  }
+
+  public Temperature(double value) {
+    this(value, TemperatureUnit.CELSIUS);
+  }
+
+  public double getValue() {
+    return 0.0;
+  }
+
+  public TemperatureUnit getUnit() {
+    return unit;
+  }
+
+  public Temperature convertTo(TemperatureUnit unit) {
+    return new Temperature(value, unit);
+  }
+
+  @Override
+  public String toString() {
+    return value + " C";
   }
 }
