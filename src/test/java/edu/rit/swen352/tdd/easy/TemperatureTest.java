@@ -46,6 +46,6 @@ class TemperatureTest {
   @DisplayName("toString method converts returns a human_friendly representation of the temperature")
   void toString_() {
     final Temperature temperature = new Temperature(25.0, Temperature.TemperatureUnit.CELSIUS);
-    assertEquals("25 C", temperature.toString());
+    assertEquals("25.0 C", temperature.toString());
   }
 }

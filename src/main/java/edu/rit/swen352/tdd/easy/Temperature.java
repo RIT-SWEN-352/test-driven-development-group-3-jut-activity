@@ -55,7 +55,6 @@ public class Temperature {
 
   @Override
   public String toString() {
-    assert false : "not yet implemented";
     return value + " C";
   }
 }
