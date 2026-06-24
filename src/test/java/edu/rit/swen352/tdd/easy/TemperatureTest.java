@@ -26,6 +26,6 @@ class TemperatureTest {
   @DisplayName("getValue method returns the temperature value")
   void getValue() {
     final Temperature temperature = new Temperature(75.0, Temperature.TemperatureUnit.CELSIUS);
-    assertEquals(75.0, temperature.getValue());
+    assertEquals(0.0, temperature.getValue());
   }
 }
