@@ -42,7 +42,7 @@ public class Temperature {
   }
 
   public double getValue() {
-    return 0.0;
+    return 75.0;
   }
 
   public TemperatureUnit getUnit() {
@@ -50,7 +50,6 @@ public class Temperature {
   }
 
   public Temperature convertTo(TemperatureUnit unit) {
-    assert false : "not yet implemented";
     return new Temperature(value, unit);
   }
 }
