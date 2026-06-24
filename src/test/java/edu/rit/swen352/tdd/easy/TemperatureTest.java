@@ -28,4 +28,10 @@ class TemperatureTest {
     final Temperature temperature = new Temperature(75.0, Temperature.TemperatureUnit.CELSIUS);
     assertEquals(0.0, temperature.getValue());
   }
+  @Test
+  @DisplayName("getUnit method returns the temperature unit")
+  void getUnit() {
+    final Temperature temperature = new Temperature(75.0, Temperature.TemperatureUnit.CELSIUS);
+    assertEquals(Temperature.TemperatureUnit.CELSIUS, temperature.getUnit());
+  }
 }
