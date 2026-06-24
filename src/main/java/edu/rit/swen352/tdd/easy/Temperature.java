@@ -52,4 +52,10 @@ public class Temperature {
   public Temperature convertTo(TemperatureUnit unit) {
     return new Temperature(value, unit);
   }
+
+  @Override
+  public String toString() {
+    assert false : "not yet implemented";
+    return value + " C";
+  }
 }
