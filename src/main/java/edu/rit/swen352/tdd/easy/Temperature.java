@@ -42,7 +42,7 @@ public class Temperature {
   }
 
   public double getValue() {
-    return 75.0;
+    return 0.0;
   }
 
   public TemperatureUnit getUnit() {

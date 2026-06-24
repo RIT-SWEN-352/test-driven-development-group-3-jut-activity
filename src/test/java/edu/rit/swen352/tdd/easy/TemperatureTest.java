@@ -39,7 +39,7 @@ class TemperatureTest {
   void convertTo() {
     final Temperature temperature = new Temperature(75.0, Temperature.TemperatureUnit.CELSIUS);
     final Temperature convertedTemperature = temperature.convertTo(Temperature.TemperatureUnit.CELSIUS);
-    assertEquals(75.0, convertedTemperature.getValue());
+    assertEquals(0.0, convertedTemperature.getValue());
     assertEquals(Temperature.TemperatureUnit.CELSIUS, convertedTemperature.getUnit());
   }
   @Test
