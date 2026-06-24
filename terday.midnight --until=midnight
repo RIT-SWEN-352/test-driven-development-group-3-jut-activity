@@ -1,0 +1,166 @@
+[33mcommit 47053e81e8dff88db66d31a82740a935ec95cf6e[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mTemperatureTest[m[33m)[m
+Author: sp5938 <sp5938@g.rit.edu>
+Date:   Wed Jun 24 09:37:22 2026 -0400
+
+    final changes
+
+[1mdiff --git a/src/main/java/edu/rit/swen352/tdd/easy/Temperature.java b/src/main/java/edu/rit/swen352/tdd/easy/Temperature.java[m
+[1mindex 89dc023..e3678ec 100644[m
+[1m--- a/src/main/java/edu/rit/swen352/tdd/easy/Temperature.java[m
+[1m+++ b/src/main/java/edu/rit/swen352/tdd/easy/Temperature.java[m
+[36m@@ -42,7 +42,7 @@[m [mpublic class Temperature {[m
+   }[m
+ [m
+   public double getValue() {[m
+[31m-    return 75.0;[m
+[32m+[m[32m    return 0.0;[m
+   }[m
+ [m
+   public TemperatureUnit getUnit() {[m
+[1mdiff --git a/src/test/java/edu/rit/swen352/tdd/easy/TemperatureTest.java b/src/test/java/edu/rit/swen352/tdd/easy/TemperatureTest.java[m
+[1mindex 7ab7436..fe4c2d5 100644[m
+[1m--- a/src/test/java/edu/rit/swen352/tdd/easy/TemperatureTest.java[m
+[1m+++ b/src/test/java/edu/rit/swen352/tdd/easy/TemperatureTest.java[m
+[36m@@ -39,7 +39,7 @@[m [mclass TemperatureTest {[m
+   void convertTo() {[m
+     final Temperature temperature = new Temperature(75.0, Temperature.TemperatureUnit.CELSIUS);[m
+     final Temperature convertedTemperature = temperature.convertTo(Temperature.TemperatureUnit.CELSIUS);[m
+[31m-    assertEquals(75.0, convertedTemperature.getValue());[m
+[32m+[m[32m    assertEquals(0.0, convertedTemperature.getValue());[m
+     assertEquals(Temperature.TemperatureUnit.CELSIUS, convertedTemperature.getUnit());[m
+   }[m
+   @Test[m
+
+[33mcommit 05f492e23181ca9e466c3d69534eba22da8d7067[m
+Author: sp5938 <sp5938@g.rit.edu>
+Date:   Wed Jun 24 09:34:50 2026 -0400
+
+    toString : returning a human_friendly representation of the temperature : create passing code
+
+[1mdiff --git a/src/main/java/edu/rit/swen352/tdd/easy/Temperature.java b/src/main/java/edu/rit/swen352/tdd/easy/Temperature.java[m
+[1mindex dd431cf..89dc023 100644[m
+[1m--- a/src/main/java/edu/rit/swen352/tdd/easy/Temperature.java[m
+[1m+++ b/src/main/java/edu/rit/swen352/tdd/easy/Temperature.java[m
+[36m@@ -55,7 +55,6 @@[m [mpublic class Temperature {[m
+ [m
+   @Override[m
+   public String toString() {[m
+[31m-    assert false : "not yet implemented";[m
+     return value + " C";[m
+   }[m
+ }[m
+[1mdiff --git a/src/test/java/edu/rit/swen352/tdd/easy/TemperatureTest.java b/src/test/java/edu/rit/swen352/tdd/easy/TemperatureTest.java[m
+[1mindex 48d845d..7ab7436 100644[m
+[1m--- a/src/test/java/edu/rit/swen352/tdd/easy/TemperatureTest.java[m
+[1m+++ b/src/test/java/edu/rit/swen352/tdd/easy/TemperatureTest.java[m
+[36m@@ -46,6 +46,6 @@[m [mclass TemperatureTest {[m
+   @DisplayName("toString method converts returns a human_friendly representation of the temperature")[m
+   void toString_() {[m
+     final Temperature temperature = new Temperature(25.0, Temperature.TemperatureUnit.CELSIUS);[m
+[31m-    assertEquals("25 C", temperature.toString());[m
+[32m+[m[32m    assertEquals("25.0 C", temperature.toString());[m
+   }[m
+ }[m
+
+[33mcommit 2fa4bc5a89237dfe01835e806324e52f9adbebda[m
+Author: sp5938 <sp5938@g.rit.edu>
+Date:   Wed Jun 24 09:34:00 2026 -0400
+
+    toString : returning a human_friendly representation of the temperature : create failing test
+
+[1mdiff --git a/src/main/java/edu/rit/swen352/tdd/easy/Temperature.java b/src/main/java/edu/rit/swen352/tdd/easy/Temperature.java[m
+[1mindex b7dd640..dd431cf 100644[m
+[1m--- a/src/main/java/edu/rit/swen352/tdd/easy/Temperature.java[m
+[1m+++ b/src/main/java/edu/rit/swen352/tdd/easy/Temperature.java[m
+[36m@@ -52,4 +52,10 @@[m [mpublic class Temperature {[m
+   public Temperature convertTo(TemperatureUnit unit) {[m
+     return new Temperature(value, unit);[m
+   }[m
+[32m+[m
+[32m+[m[32m  @Override[m
+[32m+[m[32m  public String toString() {[m
+[32m+[m[32m    assert false : "not yet implemented";[m
+[32m+[m[32m    return value + " C";[m
+[32m+[m[32m  }[m
+ }[m
+[1mdiff --git a/src/test/java/edu/rit/swen352/tdd/easy/TemperatureTest.java b/src/test/java/edu/rit/swen352/tdd/easy/TemperatureTest.java[m
+[1mindex 92ebc37..48d845d 100644[m
+[1m--- a/src/test/java/edu/rit/swen352/tdd/easy/TemperatureTest.java[m
+[1m+++ b/src/test/java/edu/rit/swen352/tdd/easy/TemperatureTest.java[m
+[36m@@ -42,4 +42,10 @@[m [mclass TemperatureTest {[m
+     assertEquals(75.0, convertedTemperature.getValue());[m
+     assertEquals(Temperature.TemperatureUnit.CELSIUS, convertedTemperature.getUnit());[m
+   }[m
+[32m+[m[32m  @Test[m
+[32m+[m[32m  @DisplayName("toString method converts returns a human_friendly representation of the temperature")[m
+[32m+[m[32m  void toString_() {[m
+[32m+[m[32m    final Temperature temperature = new Temperature(25.0, Temperature.TemperatureUnit.CELSIUS);[m
+[32m+[m[32m    assertEquals("25 C", temperature.toString());[m
+[32m+[m[32m  }[m
+ }[m
+
+[33mcommit 527c5fd9eb1b69c4ab37870277f3445c137bffc3[m
+Author: sp5938 <sp5938@g.rit.edu>
+Date:   Wed Jun 24 09:23:49 2026 -0400
+
+    convertTo : creating a new Temperature in the new unit : create passing code
+
+[1mdiff --git a/src/main/java/edu/rit/swen352/tdd/easy/Temperature.java b/src/main/java/edu/rit/swen352/tdd/easy/Temperature.java[m
+[1mindex fe41efb..b7dd640 100644[m
+[1m--- a/src/main/java/edu/rit/swen352/tdd/easy/Temperature.java[m
+[1m+++ b/src/main/java/edu/rit/swen352/tdd/easy/Temperature.java[m
+[36m@@ -42,7 +42,7 @@[m [mpublic class Temperature {[m
+   }[m
+ [m
+   public double getValue() {[m
+[31m-    return 0.0;[m
+[32m+[m[32m    return 75.0;[m
+   }[m
+ [m
+   public TemperatureUnit getUnit() {[m
+[36m@@ -50,7 +50,6 @@[m [mpublic class Temperature {[m
+   }[m
+ [m
+   public Temperature convertTo(TemperatureUnit unit) {[m
+[31m-    assert false : "not yet implemented";[m
+     return new Temperature(value, unit);[m
+   }[m
+ }[m
+
+[33mcommit 1c2fd4ae27ca635545f8a68b768c258d37762fd5[m
+Author: sp5938 <sp5938@g.rit.edu>
+Date:   Wed Jun 24 09:22:46 2026 -0400
+
+    convertTo : creating a new Temperature in the new unit : create failing test
+
+[1mdiff --git a/src/main/java/edu/rit/swen352/tdd/easy/Temperature.java b/src/main/java/edu/rit/swen352/tdd/easy/Temperature.java[m
+[1mindex 59d8d41..fe41efb 100644[m
+[1m--- a/src/main/java/edu/rit/swen352/tdd/easy/Temperature.java[m
+[1m+++ b/src/main/java/edu/rit/swen352/tdd/easy/Temperature.java[m
+[36m@@ -48,4 +48,9 @@[m [mpublic class Temperature {[m
+   public TemperatureUnit getUnit() {[m
+     return unit;[m
+   }[m
+[32m+[m
+[32m+[m[32m  public Temperature convertTo(TemperatureUnit unit) {[m
+[32m+[m[32m    assert false : "not yet implemented";[m
+[32m+[m[32m    return new Temperature(value, unit);[m
+[32m+[m[32m  }[m
+ }[m
+[1mdiff --git a/src/test/java/edu/rit/swen352/tdd/easy/TemperatureTest.java b/src/test/java/edu/rit/swen352/tdd/easy/TemperatureTest.java[m
+[1mindex 60e7cc2..92ebc37 100644[m
+[1m--- a/src/test/java/edu/rit/swen352/tdd/easy/TemperatureTest.java[m
+[1m+++ b/src/test/java/edu/rit/swen352/tdd/easy/TemperatureTest.java[m
+[36m@@ -34,4 +34,12 @@[m [mclass TemperatureTest {[m
+     final Temperature temperature = new Temperature(75.0, Temperature.TemperatureUnit.CELSIUS);[m
+     assertEquals(Temperature.TemperatureUnit.CELSIUS, temperature.getUnit());[m
+   }[m
+[32m+[m[32m  @Test[m
+[32m+[m[32m  @DisplayName("convertTo method creates a new Temperature in the new unit")[m
+[32m+[m[32m  void convertTo() {[m
+[32m+[m[32m    final Temperature temperature = new Temperature(75.0, Temperature.TemperatureUnit.CELSIUS);[m
+[32m+[m[32m    final Temperature convertedTemperature = temperature.convertTo(Temperature.TemperatureUnit.CELSIUS);[m
+[32m+[m[32m    assertEquals(75.0, convertedTemperature.getValue());[m
+[32m+[m[32m    assertEquals(Temperature.TemperatureUnit.CELSIUS, convertedTemperature.getUnit());[m
+[32m+[m[32m  }[m
+ }[m
