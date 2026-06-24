@@ -34,4 +34,12 @@ class TemperatureTest {
     final Temperature temperature = new Temperature(75.0, Temperature.TemperatureUnit.CELSIUS);
     assertEquals(Temperature.TemperatureUnit.CELSIUS, temperature.getUnit());
   }
+  @Test
+  @DisplayName("convertTo method creates a new Temperature in the new unit")
+  void convertTo() {
+    final Temperature temperature = new Temperature(75.0, Temperature.TemperatureUnit.CELSIUS);
+    final Temperature convertedTemperature = temperature.convertTo(Temperature.TemperatureUnit.CELSIUS);
+    assertEquals(75.0, convertedTemperature.getValue());
+    assertEquals(Temperature.TemperatureUnit.CELSIUS, convertedTemperature.getUnit());
+  }
 }
