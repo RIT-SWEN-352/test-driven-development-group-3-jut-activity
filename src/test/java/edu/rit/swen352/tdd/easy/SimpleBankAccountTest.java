@@ -22,4 +22,11 @@ class SimpleBankAccountTest {
 
         assertEquals(25.50f, account.getBalance());
     }
+    @Test
+    void ctor_negativeInitialBalance() {
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> new SimpleBankAccount(-1.0f)
+        );
+    }
 }
