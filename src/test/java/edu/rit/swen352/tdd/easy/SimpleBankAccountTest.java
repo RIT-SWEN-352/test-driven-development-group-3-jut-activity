@@ -16,4 +16,10 @@ class SimpleBankAccountTest {
 
         assertEquals(0.0f, account.getBalance());
     }
+    @Test
+    void ctor_initialBalanceSetsBalance() {
+        SimpleBankAccount account = new SimpleBankAccount(25.50f);
+
+        assertEquals(25.50f, account.getBalance());
+    }
 }
