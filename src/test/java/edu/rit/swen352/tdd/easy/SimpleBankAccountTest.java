@@ -78,4 +78,10 @@ class SimpleBankAccountTest {
             () -> account.withdraw(-5.0f)
         );
     }
+    @Test
+    void toString_formatsBalanceAsCurrency() {
+        SimpleBankAccount account = new SimpleBankAccount(20.5f);
+
+        assertEquals("$20.50", account.toString());
+    }
 }
