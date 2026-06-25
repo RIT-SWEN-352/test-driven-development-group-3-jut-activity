@@ -60,4 +60,13 @@ class SimpleBankAccountTest {
 
         assertEquals(30.0f, account.getBalance());
     }
+    @Test
+    void withdraw_moreThanBalance() {
+        SimpleBankAccount account = new SimpleBankAccount(10.0f);
+
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> account.withdraw(20.0f)
+        );
+    }
 }
