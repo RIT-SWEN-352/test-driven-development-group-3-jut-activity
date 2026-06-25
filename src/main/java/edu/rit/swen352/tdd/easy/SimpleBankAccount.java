@@ -44,6 +44,9 @@ public class SimpleBankAccount {
     }
 
     public void deposit(float amount) {
+        if (amount < 0) {
+            throw new IllegalArgumentException("Deposit cannot be negative.");
+        }
         balance += amount;
     }
 }
