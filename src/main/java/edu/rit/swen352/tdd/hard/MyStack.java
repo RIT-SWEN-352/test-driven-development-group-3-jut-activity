@@ -53,7 +53,6 @@ public class MyStack<T> {
   }
 
   public MyStack() {
-    assert false : "not yet implemented";
     this.capacity = 16;
   }
 
