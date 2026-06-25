@@ -49,4 +49,8 @@ public class SimpleBankAccount {
         }
         balance += amount;
     }
+
+    public void withdraw(float amount) {
+        balance -= amount;
+    }
 }
