@@ -46,4 +46,11 @@ package edu.rit.swen352.tdd.hard;
  * @param <T> the type of elements in the stack.
  */
 public class MyStack<T> {
+  private final int capacity;
+
+  public MyStack(int capacity) {
+    assert false : "not yet implemented";
+    this.capacity = capacity;
+  }
+
 }
