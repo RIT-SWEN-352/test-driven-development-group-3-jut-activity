@@ -69,4 +69,13 @@ class SimpleBankAccountTest {
             () -> account.withdraw(20.0f)
         );
     }
+    @Test
+    void withdraw_negativeAmount() {
+        SimpleBankAccount account = new SimpleBankAccount(10.0f);
+
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> account.withdraw(-5.0f)
+        );
+    }
 }
