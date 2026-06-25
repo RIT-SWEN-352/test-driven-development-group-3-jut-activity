@@ -22,5 +22,46 @@ package edu.rit.swen352.tdd.easy;
  * </ul>
  */
 public class SimpleBankAccount {
+    private float balance;
 
+    public SimpleBankAccount(float initialBalance) {
+        if (initialBalance < 0) {
+            throw new IllegalArgumentException("Balance cannot be negative.");
+        }
+        this.balance = initialBalance; 
+    }
+
+    public SimpleBankAccount() {
+        this.balance = 0.0f;
+    }
+
+    public float getBalance() {
+        return balance;
+    }
+
+    public boolean isAccountEmpty() {
+        return balance == 0.0f;
+    }
+
+    public void deposit(float amount) {
+        if (amount < 0) {
+            throw new IllegalArgumentException("Deposit cannot be negative.");
+        }
+        balance += amount;
+    }
+
+    public void withdraw(float amount) {
+        if (amount < 0) {
+            throw new IllegalArgumentException("Withdrawal cannot be negative.");
+        }
+        if (amount > balance) {
+            throw new IllegalArgumentException("Not enough money in account.");
+        }
+        balance -= amount;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("$%.2f", balance);
+    }
 }
