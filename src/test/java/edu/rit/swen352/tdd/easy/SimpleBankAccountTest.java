@@ -52,4 +52,12 @@ class SimpleBankAccountTest {
             () -> account.deposit(-5.0f)
         );
     }
+    @Test
+    void withdraw_positiveAmountDecreasesBalance() {
+        SimpleBankAccount account = new SimpleBankAccount(50.0f);
+
+        account.withdraw(20.0f);
+
+        assertEquals(30.0f, account.getBalance());
+    }
 }
