@@ -42,4 +42,8 @@ public class SimpleBankAccount {
     public boolean isAccountEmpty() {
         return balance == 0.0f;
     }
+
+    public void deposit(float amount) {
+        balance += amount;
+    }
 }
