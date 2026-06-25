@@ -51,6 +51,9 @@ public class SimpleBankAccount {
     }
 
     public void withdraw(float amount) {
+        if (amount > balance) {
+            throw new IllegalArgumentException("Not enough money in account.");
+        }
         balance -= amount;
     }
 }
