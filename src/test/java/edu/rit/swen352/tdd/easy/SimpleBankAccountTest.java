@@ -43,4 +43,13 @@ class SimpleBankAccountTest {
 
         assertEquals(25.5f, account.getBalance());
     }
+    @Test
+    void deposit_negativeAmount() {
+        SimpleBankAccount account = new SimpleBankAccount();
+
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> account.deposit(-5.0f)
+        );
+    }
 }
