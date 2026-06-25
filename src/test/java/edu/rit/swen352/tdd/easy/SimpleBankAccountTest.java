@@ -29,4 +29,10 @@ class SimpleBankAccountTest {
             () -> new SimpleBankAccount(-1.0f)
         );
     }
+    @Test
+    void isAccountEmpty_zeroBalanceReturnsTrue() {
+        SimpleBankAccount account = new SimpleBankAccount();
+
+        assertTrue(account.isAccountEmpty());
+    }
 }
