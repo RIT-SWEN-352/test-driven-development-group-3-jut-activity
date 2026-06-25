@@ -35,4 +35,12 @@ class SimpleBankAccountTest {
 
         assertTrue(account.isAccountEmpty());
     }
+    @Test
+    void deposit_positiveAmountIncreasesBalance() {
+        SimpleBankAccount account = new SimpleBankAccount(10.0f);
+
+        account.deposit(15.5f);
+
+        assertEquals(25.5f, account.getBalance());
+    }
 }
