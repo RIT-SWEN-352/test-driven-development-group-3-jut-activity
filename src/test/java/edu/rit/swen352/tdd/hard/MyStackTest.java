@@ -19,4 +19,10 @@ class MyStackTest {
     assertNotNull(stack);
   }
 
+  @Test
+  @DisplayName("ctor with no argument supplied that defaults capacity to 16")
+  void ctor_2() {
+    final MyStack<Integer> stack = new MyStack<>();
+    assertNotNull(stack);
+  }
 }
