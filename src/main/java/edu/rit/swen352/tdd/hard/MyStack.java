@@ -59,4 +59,9 @@ public class MyStack<T> {
   public int getCapacity() {
     return capacity;
   }
+
+  public boolean isEmpty() {
+    assert false : "not yet implemented";
+    return false;
+  }
 }
