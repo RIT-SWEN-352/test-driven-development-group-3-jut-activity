@@ -30,4 +30,11 @@ class MyStackTest {
     final MyStack<Integer> stack = new MyStack<>(16);
     assertEquals(16, stack.getCapacity());
   }
+
+  @Test
+  @DisplayName("getCapacity returns default capacity")
+  void getCapacity_2() {
+    final MyStack<Integer> stack = new MyStack<>();
+    assertEquals(16, stack.getCapacity());
+  }
 }
