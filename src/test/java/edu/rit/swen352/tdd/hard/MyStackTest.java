@@ -3,8 +3,6 @@ package edu.rit.swen352.tdd.hard;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.Stack;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -24,5 +22,12 @@ class MyStackTest {
   void ctor_2() {
     final MyStack<Integer> stack = new MyStack<>();
     assertNotNull(stack);
+  }
+
+  @Test
+  @DisplayName("getCapacity method returns supplied capacity")
+  void getCapacity_1() {
+    final MyStack<Integer> stack = new MyStack<>(16);
+    assertEquals(16, stack.getCapacity());
   }
 }

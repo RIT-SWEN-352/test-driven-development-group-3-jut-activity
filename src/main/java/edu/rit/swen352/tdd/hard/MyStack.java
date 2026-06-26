@@ -56,4 +56,8 @@ public class MyStack<T> {
     this.capacity = 16;
   }
 
+  public int getCapacity() {
+    assert false : "not yet implemented";
+    return capacity;
+  }
 }
