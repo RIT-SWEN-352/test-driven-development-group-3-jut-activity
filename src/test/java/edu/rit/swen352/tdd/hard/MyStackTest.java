@@ -89,4 +89,17 @@ class MyStackTest {
       () -> assertFalse(stack.isEmpty())
     );
   }
+
+  @Test
+  @DisplayName("push adds elements until capacity is reached")
+  void push_3() {
+    final MyStack<Integer> stack = new MyStack<>(5);
+    stack.push(5);
+    stack.push(6);
+    stack.push(7);
+    stack.push(8);
+    stack.push(9);
+    assertEquals(5, stack.size());
+
+  }
 }
