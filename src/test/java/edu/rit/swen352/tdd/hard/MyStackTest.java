@@ -58,4 +58,11 @@ class MyStackTest {
     final MyStack<Integer> stack = new MyStack<>(16);
     assertEquals(0, stack.size());
   }
+
+  @Test
+  @DisplayName("size returns 0 for a new stack with default capacity")
+  void size_2() {
+    final MyStack<Integer> stack = new MyStack<>();
+    assertEquals(0, stack.size());
+  }
 }
