@@ -40,14 +40,14 @@ public class MyOptional<T> {
   private final T value;
 
   private MyOptional(T value) {
-    this.value = null;
+    this.value = value;
   }
 
   public static <T> MyOptional<T> empty() {
-    return null;
+    return new MyOptional<T>(null);
   }
 
   public boolean isPresent() {
-    return true;
+    return value != null;
   }
 }
