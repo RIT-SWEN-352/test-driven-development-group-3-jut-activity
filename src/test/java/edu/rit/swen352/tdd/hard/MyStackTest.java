@@ -25,7 +25,7 @@ class MyStackTest {
   }
 
   @Test
-  @DisplayName("getCapacity method returns supplied capacity")
+  @DisplayName("getCapacity returns supplied capacity")
   void getCapacity_1() {
     final MyStack<Integer> stack = new MyStack<>(16);
     assertEquals(16, stack.getCapacity());
@@ -39,16 +39,23 @@ class MyStackTest {
   }
 
   @Test
-  @DisplayName("isEmpty returns false for a new stack with supplied capacity")
+  @DisplayName("isEmpty returns true for a new stack with supplied capacity")
   void isEmpty_1() {
     final MyStack<Integer> stack = new MyStack<>(16);
-    assertFalse(stack.isEmpty());
+    assertTrue(stack.isEmpty());
   }
 
   @Test
-  @DisplayName("isEmpty returns false for a new stack with default capacity")
+  @DisplayName("isEmpty returns true for a new stack with default capacity")
   void isEmpty_2() {
     final MyStack<Integer> stack = new MyStack<>();
-    assertFalse(stack.isEmpty());
+    assertTrue(stack.isEmpty());
+  }
+
+  @Test
+  @DisplayName("size returns 0 for a new stack with supplied capacity")
+  void size_1() {
+    final MyStack<Integer> stack = new MyStack<>(16);
+    assertEquals(0, stack.size());
   }
 }

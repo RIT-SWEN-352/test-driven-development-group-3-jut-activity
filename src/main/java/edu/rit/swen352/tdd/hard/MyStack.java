@@ -61,6 +61,11 @@ public class MyStack<T> {
   }
 
   public boolean isEmpty() {
-    return false;
+    return true;
+  }
+
+  public int size() {
+    assert false : "not yet implemented";
+    return 0;
   }
 }
