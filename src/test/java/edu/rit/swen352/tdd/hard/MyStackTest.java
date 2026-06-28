@@ -44,4 +44,11 @@ class MyStackTest {
     final MyStack<Integer> stack = new MyStack<>(16);
     assertFalse(stack.isEmpty());
   }
+
+  @Test
+  @DisplayName("isEmpty returns false for a new stack with default capacity")
+  void isEmpty_2() {
+    final MyStack<Integer> stack = new MyStack<>();
+    assertFalse(stack.isEmpty());
+  }
 }
