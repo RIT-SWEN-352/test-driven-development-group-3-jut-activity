@@ -65,4 +65,15 @@ class MyStackTest {
     final MyStack<Integer> stack = new MyStack<>();
     assertEquals(0, stack.size());
   }
+
+  @Test
+  @DisplayName("push adds one element onto an empty stack")
+  void push_1() {
+    final MyStack<Integer> stack = new MyStack<>(16);
+    stack.push(5);
+    assertAll(
+      () -> assertEquals(1, stack.size()),
+      () -> assertFalse(stack.isEmpty())
+    );
+  }
 }
