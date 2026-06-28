@@ -73,7 +73,6 @@ public class MyStack<T> {
   }
 
   public void push(T element) {
-    assert false : "not yet implemented";
     if (size == capacity) {
       throw new IllegalStateException();
     }
