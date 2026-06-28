@@ -36,4 +36,18 @@ package edu.rit.swen352.tdd.easy;
  * @param <T> the type of value.
  */
 public class MyOptional<T> {
+
+  private final T value;
+
+  private MyOptional(T value) {
+    this.value = null;
+  }
+
+  public static <T> MyOptional<T> empty() {
+    return null;
+  }
+
+  public boolean isPresent() {
+    return true;
+  }
 }
