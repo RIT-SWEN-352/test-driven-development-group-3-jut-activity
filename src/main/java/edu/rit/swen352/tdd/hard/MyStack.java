@@ -47,13 +47,17 @@ package edu.rit.swen352.tdd.hard;
  */
 public class MyStack<T> {
   private final int capacity;
+  private final Object[] elements;
+  private int size;
 
   public MyStack(int capacity) {
     this.capacity = capacity;
+    this.elements = new Object[capacity];
+    this.size = 0;
   }
 
   public MyStack() {
-    this.capacity = 16;
+    this(16);
   }
 
   public int getCapacity() {
@@ -61,14 +65,19 @@ public class MyStack<T> {
   }
 
   public boolean isEmpty() {
-    return true;
+    return size == 0;
   }
 
   public int size() {
-    return 0;
+    return size;
   }
 
   public void push(T element) {
-    assert false : "not yet implemented";
+    if (size == capacity) {
+      throw new IllegalStateException();
+    }
+
+    elements[size] = element;
+    size++;
   }
 }
