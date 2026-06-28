@@ -15,6 +15,12 @@ class MyOptionalTest {
   void empty_1() {
     MyOptional<String> optional = MyOptional.empty();
     assertNotNull(optional);
+  }
+
+  @Test
+  @DisplayName("is present returns false")
+  void isPresent_1() {
+    MyOptional<String> optional = MyOptional.empty();
     assertFalse(optional.isPresent());
   }
 }

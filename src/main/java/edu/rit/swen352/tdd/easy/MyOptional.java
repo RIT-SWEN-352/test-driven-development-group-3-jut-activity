@@ -48,6 +48,6 @@ public class MyOptional<T> {
   }
 
   public boolean isPresent() {
-    return value != null;
+    return true;
   }
 }
