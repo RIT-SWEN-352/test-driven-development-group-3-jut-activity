@@ -83,6 +83,7 @@ public class MyStack<T> {
     size++;
   }
 
+  @SuppressWarnings("unchecked")
   public T pop() {
     if (size == 0) {
       throw new NoSuchElementException();
@@ -92,5 +93,14 @@ public class MyStack<T> {
     T element = (T) elements[size];
     elements[size] = null;
     return element;
+  }
+
+  @SuppressWarnings("unchecked")
+  public T peek() {
+    assert false : "not yet implemented";
+    if (size == 0) {
+      throw new NoSuchElementException();
+    }
+    return (T) elements[size-1];
   }
 }

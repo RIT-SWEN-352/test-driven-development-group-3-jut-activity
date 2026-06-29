@@ -119,14 +119,14 @@ class MyStackTest {
   @Test
   @DisplayName("pop throws NoSuchElementException when stack is empty")
   void pop_1() {
-    final MyStack<Integer> stack = new MyStack<>(5);
+    final MyStack<Integer> stack = new MyStack<>(16);
     assertThrows(NoSuchElementException.class, stack::pop);
   }
 
   @Test
   @DisplayName("pop returns the element in the stack")
   void pop_2() {
-    final MyStack<Integer> stack = new MyStack<>(5);
+    final MyStack<Integer> stack = new MyStack<>(16);
     stack.push(5);
     assertEquals(5, stack.pop());
   }
@@ -134,7 +134,7 @@ class MyStackTest {
   @Test
   @DisplayName("pop updates the stack size")
   void pop_3() {
-    final MyStack<Integer> stack = new MyStack<>(5);
+    final MyStack<Integer> stack = new MyStack<>(16);
     stack.push(5);
     stack.pop();
     assertEquals(0, stack.size());
@@ -143,7 +143,7 @@ class MyStackTest {
   @Test
   @DisplayName("pop declares stack empty after removing last/only element")
   void pop_4() {
-    final MyStack<Integer> stack = new MyStack<>(5);
+    final MyStack<Integer> stack = new MyStack<>(16);
     stack.push(5);
     stack.pop();
     assertTrue(stack.isEmpty());
@@ -152,7 +152,7 @@ class MyStackTest {
   @Test
   @DisplayName("pop returns elements in stack")
   void pop_5() {
-    final MyStack<Integer> stack = new MyStack<>(5);
+    final MyStack<Integer> stack = new MyStack<>(16);
     stack.push(5);
     stack.push(6);
     stack.push(7);
@@ -165,5 +165,12 @@ class MyStackTest {
       () -> assertEquals(6, stack.pop()),
       () -> assertEquals(5, stack.pop())
     );
+  }
+
+  @Test
+  @DisplayName("peek throws NoSuchElementException when stack is empty")
+  void peek_1() {
+    final MyStack<Integer> stack = new MyStack<>(16);
+    assertThrows(NoSuchElementException.class, stack::peek);
   }
 }
