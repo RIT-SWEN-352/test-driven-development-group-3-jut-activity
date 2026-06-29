@@ -18,7 +18,7 @@ class MyOptionalTest {
   }
 
   @Test
-  @DisplayName("is present returns false")
+  @DisplayName("is present returns presence")
   void isPresent_1() {
     MyOptional<String> optional = MyOptional.empty();
     assertFalse(optional.isPresent());
@@ -37,5 +37,19 @@ class MyOptionalTest {
     assertThrows(NullPointerException.class, () -> {
       MyOptional.of(null);
     });
+  }
+
+  @Test
+  @DisplayName("non null returns optional with value")
+  void ofNullable_1() {
+    MyOptional<String> optional = MyOptional.ofNullable("test");
+    assertTrue(optional.isPresent());
+  }
+
+  @Test
+  @DisplayName("null returns optional without value")
+  void ofNullable_2() {
+    MyOptional<String> optional = MyOptional.ofNullable(null);
+    assertFalse(optional.isPresent());
   }
 }
