@@ -3,6 +3,7 @@ package edu.rit.swen352.tdd.easy;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.NoSuchElementException;
+import java.util.concurrent.atomic.AtomicBoolean;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -66,5 +67,16 @@ class MyOptionalTest {
   void get_2() {
     MyOptional<String> optional = MyOptional.empty();
     assertThrows(NoSuchElementException.class, optional::get);
+  }
+
+  @Test
+  @DisplayName("if value present execute consumer")
+  void ifPresentConsumer_1() {
+    AtomicBoolean executed = new AtomicBoolean(false);
+    MyOptional<String> optional = MyOptional.of("test");
+
+    optional.ifPresent(str -> executed.set(true));
+
+    assertTrue(executed.get());
   }
 }
