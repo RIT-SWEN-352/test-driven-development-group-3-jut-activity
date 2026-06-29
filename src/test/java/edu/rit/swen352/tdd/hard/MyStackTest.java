@@ -3,6 +3,8 @@ package edu.rit.swen352.tdd.hard;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.NoSuchElementException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -112,5 +114,12 @@ class MyStackTest {
     stack.push(8);
     stack.push(9);
     assertThrows(IllegalStateException.class, () -> stack.push(7));
+  }
+
+  @Test
+  @DisplayName("pop throws NoSuchElementException when stack is empty")
+  void pop_1() {
+    final MyStack<Integer> stack = new MyStack<>(5);
+    assertThrows(NoSuchElementException.class, stack::pop);
   }
 }
