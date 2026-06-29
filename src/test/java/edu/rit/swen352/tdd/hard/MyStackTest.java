@@ -181,4 +181,16 @@ class MyStackTest {
     stack.push(5);
     assertEquals(5, stack.peek());
   }
+
+  @Test
+  @DisplayName("peek leaves the stack unchanged")
+  void peek_3() {
+    final MyStack<Integer> stack = new MyStack<>(16);
+    stack.push(5);
+    stack.peek();
+    assertAll(
+      () -> assertEquals(1, stack.size()),
+      () -> assertFalse(stack.isEmpty())
+    );
+  }
 }
