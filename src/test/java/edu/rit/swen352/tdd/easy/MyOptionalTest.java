@@ -23,4 +23,11 @@ class MyOptionalTest {
     MyOptional<String> optional = MyOptional.empty();
     assertFalse(optional.isPresent());
   }
+
+  @Test
+  @DisplayName("of returns optional with value")
+  void of_1() {
+    MyOptional<String> optional = MyOptional.of("test");
+    assertNotNull(optional);
+  }
 }

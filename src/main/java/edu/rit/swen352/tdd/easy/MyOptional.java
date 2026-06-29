@@ -47,6 +47,10 @@ public class MyOptional<T> {
     return new MyOptional<T>(null);
   }
 
+  public static <T> MyOptional<T> of(T value) {
+    return null;
+  }
+
   public boolean isPresent() {
     return value != null;
   }
