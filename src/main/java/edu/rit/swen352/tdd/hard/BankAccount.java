@@ -99,4 +99,9 @@ public class BankAccount {
     }
     this.balance = this.balance.subtract(amount);
   }
+
+  @Override
+  public String toString() {
+    return String.format("$%d.%02d", balance.dollars(), balance.cents());
+  }
 }
