@@ -173,4 +173,12 @@ class MyStackTest {
     final MyStack<Integer> stack = new MyStack<>(16);
     assertThrows(NoSuchElementException.class, stack::peek);
   }
+
+  @Test
+  @DisplayName("peek returns the element in the stack")
+  void peek_2() {
+    final MyStack<Integer> stack = new MyStack<>(16);
+    stack.push(5);
+    assertEquals(5, stack.peek());
+  }
 }
