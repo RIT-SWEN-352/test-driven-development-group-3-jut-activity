@@ -31,7 +31,11 @@ record Money(int dollars, int cents) {
   }
 
   public Money subtract(Money other) {
-    return null;
+    int totalCents1 = this.dollars * 100 + this.cents;
+    int totalCents2 = other.dollars * 100 + other.cents;
+    int resultCents = totalCents1 - totalCents2;
+
+    return new Money(resultCents / 100, resultCents % 100);
   }
 }
 
