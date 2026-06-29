@@ -79,6 +79,6 @@ public class BankAccount {
   }
 
   public Money getBalance() {
-    return null;
+    return balance;
   }
 }
