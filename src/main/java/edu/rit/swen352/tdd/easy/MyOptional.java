@@ -48,6 +48,9 @@ public class MyOptional<T> {
   }
 
   public static <T> MyOptional<T> of(T value) {
+    if (value == null) {
+      throw new NullPointerException("Value cannot be null for MyOptional.of()");
+    }
     return new MyOptional<>(value);
   }
 
