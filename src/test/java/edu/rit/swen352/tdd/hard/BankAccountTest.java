@@ -19,7 +19,7 @@ class BankAccountTest {
   }
 
   @Test
-  @DisplayName("money should make sure dollars and cents are non-negative")
+  @DisplayName("money should make sure dollars and cents are non-negative and conforming")
   void money_2() {
     assertThrows(IllegalArgumentException.class, () -> new Money(10, 100));
     assertThrows(IllegalArgumentException.class, () -> new Money(10, -1));

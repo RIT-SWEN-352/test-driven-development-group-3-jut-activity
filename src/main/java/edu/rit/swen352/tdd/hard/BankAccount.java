@@ -12,6 +12,15 @@ record Money(int dollars, int cents) {
   public int cents() {
     return cents;
   }
+
+  public Money {
+    if (dollars < 0) {
+      throw new IllegalArgumentException("Dollars can't be negative");
+    }
+    if (cents < 0 || cents > 99) {
+      throw new IllegalArgumentException("Cents must be between 0 and 99");
+    }
+  }
 }
 
 /**
