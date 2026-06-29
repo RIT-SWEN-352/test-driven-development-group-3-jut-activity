@@ -30,4 +30,12 @@ class MyOptionalTest {
     MyOptional<String> optional = MyOptional.of("test");
     assertNotNull(optional);
   }
+
+  @Test
+  @DisplayName("throws null pointer exception for null value")
+  void of_2() {
+    assertThrows(NullPointerException.class, () -> {
+      MyOptional.of(null);
+    });
+  }
 }
