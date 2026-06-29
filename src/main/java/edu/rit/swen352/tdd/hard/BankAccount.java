@@ -66,4 +66,15 @@ record Money(int dollars, int cents) {
  *   <li>{@code toString()}: returns a human-friendly representation of the account balance, eg {@code $20.50}</li>
  * </ul>
  */
-public class BankAccount {}
+public class BankAccount {
+
+  private Money balance;
+
+  public BankAccount(Money initialBalance) {
+    this.balance = null;
+  }
+
+  public Money getBalance() {
+    return balance;
+  }
+}

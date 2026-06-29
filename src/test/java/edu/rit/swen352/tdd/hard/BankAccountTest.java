@@ -56,4 +56,13 @@ class BankAccountTest {
 
     assertThrows(IllegalArgumentException.class, () -> m1.subtract(m2));
   }
+
+  @Test
+  @DisplayName("ctor with balance")
+  void ctor_1() {
+    Money initialBalance = new Money(100, 50);
+    BankAccount account = new BankAccount(initialBalance);
+
+    assertEquals(initialBalance, account.getBalance());
+  }
 }
