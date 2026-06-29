@@ -116,4 +116,11 @@ class BankAccountTest {
       account.withdraw(new Money(10, 0));
     });
   }
+
+  @Test
+  @DisplayName("balance correctly formatted")
+  void toString_1() {
+    BankAccount account = new BankAccount(new Money(20, 50));
+    assertEquals("$20.50", account.toString());
+  }
 }
