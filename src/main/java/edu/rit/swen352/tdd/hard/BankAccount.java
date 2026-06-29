@@ -81,4 +81,8 @@ public class BankAccount {
   public Money getBalance() {
     return balance;
   }
+
+  public boolean isAccountEmpty() {
+    return false;
+  }
 }
