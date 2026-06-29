@@ -106,4 +106,14 @@ class BankAccountTest {
 
     assertEquals(new Money(4, 50), account.getBalance());
   }
+
+  @Test
+  @DisplayName("insufficient funds")
+  void withdraw_2() {
+    BankAccount account = new BankAccount(new Money(5, 0));
+
+    assertThrows(IllegalStateException.class, () -> {
+      account.withdraw(new Money(10, 0));
+    });
+  }
 }
