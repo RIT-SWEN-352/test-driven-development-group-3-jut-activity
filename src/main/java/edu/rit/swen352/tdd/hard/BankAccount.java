@@ -6,11 +6,11 @@ package edu.rit.swen352.tdd.hard;
  */
 record Money(int dollars, int cents) {
   public int dollars() {
-    return 0;
+    return dollars;
   }
 
   public int cents() {
-    return 0;
+    return cents;
   }
 }
 
