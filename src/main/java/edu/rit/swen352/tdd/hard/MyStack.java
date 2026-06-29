@@ -97,6 +97,7 @@ public class MyStack<T> {
 
   @SuppressWarnings("unchecked")
   public T peek() {
+    assert false : "not yet implemented";
     if (size == 0) {
       throw new NoSuchElementException();
     }

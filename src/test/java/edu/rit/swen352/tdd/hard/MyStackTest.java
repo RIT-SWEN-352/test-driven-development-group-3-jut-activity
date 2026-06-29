@@ -203,4 +203,18 @@ class MyStackTest {
     stack.push(7);
     assertEquals(7, stack.peek());
   }
+
+  @Test
+  @DisplayName("repeated peaks leave the stack unchanged")
+  void peek_5() {
+    final MyStack<Integer> stack = new MyStack<>(16);
+    stack.push(5);
+    stack.push(6);
+    assertAll(
+      () -> assertEquals(6, stack.peek()),
+      () -> assertEquals(6, stack.peek()),
+      () -> assertEquals(2, stack.size()),
+      () -> assertFalse(stack.isEmpty())
+    );
+  }
 }
