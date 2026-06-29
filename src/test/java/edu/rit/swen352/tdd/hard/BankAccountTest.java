@@ -88,4 +88,13 @@ class BankAccountTest {
     BankAccount account = new BankAccount();
     assertTrue(account.isAccountEmpty());
   }
+
+  @Test
+  @DisplayName("increase balance")
+  void deposit_1() {
+    BankAccount account = new BankAccount(new Money(10, 0));
+    account.deposit(new Money(5, 50));
+
+    assertEquals(new Money(15, 50), account.getBalance());
+  }
 }
