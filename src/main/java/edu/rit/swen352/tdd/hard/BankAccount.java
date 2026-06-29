@@ -89,4 +89,6 @@ public class BankAccount {
   public void deposit(Money amount) {
     this.balance = this.balance.add(amount);
   }
+
+  public void withdraw(Money amount) {}
 }

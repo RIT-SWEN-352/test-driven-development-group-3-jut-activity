@@ -97,4 +97,13 @@ class BankAccountTest {
 
     assertEquals(new Money(15, 50), account.getBalance());
   }
+
+  @Test
+  @DisplayName("decrease balance")
+  void withdraw_1() {
+    BankAccount account = new BankAccount(new Money(10, 0));
+    account.withdraw(new Money(5, 50));
+
+    assertEquals(new Money(4, 50), account.getBalance());
+  }
 }
