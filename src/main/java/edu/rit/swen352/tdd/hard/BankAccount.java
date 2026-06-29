@@ -31,6 +31,12 @@ record Money(int dollars, int cents) {
   }
 
   public Money subtract(Money other) {
+    if (
+      this.dollars < other.dollars || (this.dollars == other.dollars && this.cents < other.cents)
+    ) {
+      throw new IllegalArgumentException("Insufficient funds");
+    }
+
     int totalCents1 = this.dollars * 100 + this.cents;
     int totalCents2 = other.dollars * 100 + other.cents;
     int resultCents = totalCents1 - totalCents2;
