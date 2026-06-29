@@ -148,4 +148,22 @@ class MyStackTest {
     stack.pop();
     assertTrue(stack.isEmpty());
   }
+
+  @Test
+  @DisplayName("pop returns elements in stack")
+  void pop_5() {
+    final MyStack<Integer> stack = new MyStack<>(5);
+    stack.push(5);
+    stack.push(6);
+    stack.push(7);
+    stack.push(8);
+    stack.push(9);
+    assertAll(
+      () -> assertEquals(9, stack.pop()),
+      () -> assertEquals(8, stack.pop()),
+      () -> assertEquals(7, stack.pop()),
+      () -> assertEquals(6, stack.pop()),
+      () -> assertEquals(5, stack.pop())
+    );
+  }
 }

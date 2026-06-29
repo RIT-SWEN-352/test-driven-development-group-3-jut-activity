@@ -84,6 +84,7 @@ public class MyStack<T> {
   }
 
   public T pop() {
+    assert false : "not yet implemented";
     if (size == 0) {
       throw new NoSuchElementException();
     }
