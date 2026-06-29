@@ -139,4 +139,13 @@ class MyStackTest {
     stack.pop();
     assertEquals(0, stack.size());
   }
+
+  @Test
+  @DisplayName("pop declares stack empty after removing last/only element")
+  void pop_4() {
+    final MyStack<Integer> stack = new MyStack<>(5);
+    stack.push(5);
+    stack.pop();
+    assertTrue(stack.isEmpty());
+  }
 }
