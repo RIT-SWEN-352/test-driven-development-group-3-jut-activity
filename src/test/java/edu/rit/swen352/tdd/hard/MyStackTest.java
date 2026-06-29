@@ -193,4 +193,14 @@ class MyStackTest {
       () -> assertFalse(stack.isEmpty())
     );
   }
+
+  @Test
+  @DisplayName("peek returns the top element in the stack")
+  void peek_4() {
+    final MyStack<Integer> stack = new MyStack<>(16);
+    stack.push(5);
+    stack.push(6);
+    stack.push(7);
+    assertEquals(7, stack.peek());
+  }
 }
