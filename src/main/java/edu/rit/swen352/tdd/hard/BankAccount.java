@@ -71,7 +71,7 @@ public class BankAccount {
   private Money balance;
 
   public BankAccount(Money initialBalance) {
-    this.balance = null;
+    this.balance = initialBalance;
   }
 
   public Money getBalance() {
