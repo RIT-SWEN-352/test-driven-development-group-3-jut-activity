@@ -23,7 +23,11 @@ record Money(int dollars, int cents) {
   }
 
   public Money add(Money other) {
-    return null;
+    int totalCents = this.cents + other.cents;
+    int carryOver = totalCents / 100;
+    int newCents = totalCents % 100;
+    int newDollars = this.dollars + other.dollars + carryOver;
+    return new Money(newDollars, newCents);
   }
 }
 
