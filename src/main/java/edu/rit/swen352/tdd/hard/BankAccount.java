@@ -29,6 +29,10 @@ record Money(int dollars, int cents) {
     int newDollars = this.dollars + other.dollars + carryOver;
     return new Money(newDollars, newCents);
   }
+
+  public Money subtract(Money other) {
+    return null;
+  }
 }
 
 /**

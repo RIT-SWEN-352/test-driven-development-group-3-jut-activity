@@ -36,4 +36,15 @@ class BankAccountTest {
     assertEquals(16, result.dollars());
     assertEquals(25, result.cents());
   }
+
+  @Test
+  @DisplayName("money should subtract values")
+  void money_4() {
+    Money m1 = new Money(10, 25);
+    Money m2 = new Money(5, 50);
+    Money result = m1.subtract(m2);
+
+    assertEquals(4, result.dollars());
+    assertEquals(75, result.cents());
+  }
 }
