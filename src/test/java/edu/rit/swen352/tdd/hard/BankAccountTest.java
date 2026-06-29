@@ -25,4 +25,15 @@ class BankAccountTest {
     assertThrows(IllegalArgumentException.class, () -> new Money(10, -1));
     assertThrows(IllegalArgumentException.class, () -> new Money(-1, 50));
   }
+
+  @Test
+  @DisplayName("money should add values")
+  void money_3() {
+    Money m1 = new Money(10, 50);
+    Money m2 = new Money(5, 75);
+    Money result = m1.add(m2);
+
+    assertEquals(16, result.dollars());
+    assertEquals(25, result.cents());
+  }
 }

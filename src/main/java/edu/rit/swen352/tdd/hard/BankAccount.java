@@ -21,6 +21,10 @@ record Money(int dollars, int cents) {
       throw new IllegalArgumentException("Cents must be between 0 and 99");
     }
   }
+
+  public Money add(Money other) {
+    return null;
+  }
 }
 
 /**
