@@ -60,4 +60,11 @@ class MyOptionalTest {
     MyOptional<String> optional = MyOptional.of("test");
     assertEquals("test", optional.get());
   }
+
+  @Test
+  @DisplayName("throws no such element exception when empty")
+  void get_2() {
+    MyOptional<String> optional = MyOptional.empty();
+    assertThrows(NoSuchElementException.class, optional::get);
+  }
 }
