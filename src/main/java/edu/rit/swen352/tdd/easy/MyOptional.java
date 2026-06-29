@@ -55,7 +55,7 @@ public class MyOptional<T> {
   }
 
   public static <T> MyOptional<T> ofNullable(T value) {
-    return of(value);
+    return value == null ? empty() : of(value);
   }
 
   public boolean isPresent() {
