@@ -91,6 +91,12 @@ public class BankAccount {
   }
 
   public void withdraw(Money amount) {
+    if (
+      amount.dollars() > balance.dollars() ||
+      (amount.dollars() == balance.dollars() && amount.cents() > balance.cents())
+    ) {
+      throw new IllegalStateException("Insufficient funds");
+    }
     this.balance = this.balance.subtract(amount);
   }
 }
