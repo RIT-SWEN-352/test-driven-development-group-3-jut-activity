@@ -2,6 +2,7 @@ package edu.rit.swen352.tdd.easy;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.NoSuchElementException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -51,5 +52,12 @@ class MyOptionalTest {
   void ofNullable_2() {
     MyOptional<String> optional = MyOptional.ofNullable(null);
     assertFalse(optional.isPresent());
+  }
+
+  @Test
+  @DisplayName("return option value")
+  void get_1() {
+    MyOptional<String> optional = MyOptional.of("test");
+    assertEquals("test", optional.get());
   }
 }

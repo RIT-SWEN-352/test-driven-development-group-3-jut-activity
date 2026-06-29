@@ -1,5 +1,7 @@
 package edu.rit.swen352.tdd.easy;
 
+import java.util.NoSuchElementException;
+
 /**
  * MyOptional contains a single value, of any type, or nothing at all.
  *
@@ -56,6 +58,10 @@ public class MyOptional<T> {
 
   public static <T> MyOptional<T> ofNullable(T value) {
     return value == null ? empty() : of(value);
+  }
+
+  public T get() {
+    return null;
   }
 
   public boolean isPresent() {
