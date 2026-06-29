@@ -47,4 +47,13 @@ class BankAccountTest {
     assertEquals(4, result.dollars());
     assertEquals(75, result.cents());
   }
+
+  @Test
+  @DisplayName("money throws exception for illegal substraction")
+  void money_5() {
+    Money m1 = new Money(5, 25);
+    Money m2 = new Money(10, 50);
+
+    assertThrows(IllegalArgumentException.class, () -> m1.subtract(m2));
+  }
 }
