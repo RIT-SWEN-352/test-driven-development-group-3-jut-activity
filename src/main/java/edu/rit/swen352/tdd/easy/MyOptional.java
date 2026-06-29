@@ -61,7 +61,7 @@ public class MyOptional<T> {
   }
 
   public T get() {
-    return null;
+    return value;
   }
 
   public boolean isPresent() {
