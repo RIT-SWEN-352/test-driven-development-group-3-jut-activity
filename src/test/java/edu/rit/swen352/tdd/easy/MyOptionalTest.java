@@ -47,7 +47,7 @@ class MyOptionalTest {
   }
 
   @Test
-  @DisplayName("null returns optional without value")
+  @DisplayName("null returns optional without value present")
   void ofNullable_2() {
     MyOptional<String> optional = MyOptional.ofNullable(null);
     assertFalse(optional.isPresent());
