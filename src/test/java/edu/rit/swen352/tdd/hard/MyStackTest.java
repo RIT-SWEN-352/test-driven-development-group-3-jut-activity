@@ -122,4 +122,12 @@ class MyStackTest {
     final MyStack<Integer> stack = new MyStack<>(5);
     assertThrows(NoSuchElementException.class, stack::pop);
   }
+
+  @Test
+  @DisplayName("pop returns the element in the stack")
+  void pop_2() {
+    final MyStack<Integer> stack = new MyStack<>(5);
+    stack.push(5);
+    assertEquals(5, stack.pop());
+  }
 }
