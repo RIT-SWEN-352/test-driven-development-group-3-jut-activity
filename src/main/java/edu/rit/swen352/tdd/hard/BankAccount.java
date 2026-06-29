@@ -74,6 +74,8 @@ public class BankAccount {
     this.balance = initialBalance;
   }
 
+  public BankAccount() {}
+
   public Money getBalance() {
     return balance;
   }

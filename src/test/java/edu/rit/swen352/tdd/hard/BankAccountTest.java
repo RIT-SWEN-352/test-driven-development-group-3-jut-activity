@@ -65,4 +65,12 @@ class BankAccountTest {
 
     assertEquals(initialBalance, account.getBalance());
   }
+
+  @Test
+  @DisplayName("ctor default to balance 0")
+  void ctor_2() {
+    BankAccount account = new BankAccount();
+
+    assertEquals(new Money(0, 0), account.getBalance());
+  }
 }
