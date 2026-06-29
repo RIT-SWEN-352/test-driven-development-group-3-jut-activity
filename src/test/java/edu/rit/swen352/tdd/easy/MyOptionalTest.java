@@ -79,4 +79,15 @@ class MyOptionalTest {
 
     assertTrue(executed.get());
   }
+
+  @Test
+  @DisplayName("if value present execute consumer")
+  void ifPresentConsumer_2() {
+    AtomicBoolean executed = new AtomicBoolean(false);
+    MyOptional<String> optional = MyOptional.empty();
+
+    optional.ifPresent(str -> executed.set(true));
+
+    assertFalse(executed.get());
+  }
 }
