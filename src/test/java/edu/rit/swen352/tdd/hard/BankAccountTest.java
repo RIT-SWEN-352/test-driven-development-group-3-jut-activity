@@ -73,4 +73,12 @@ class BankAccountTest {
 
     assertEquals(new Money(0, 0), account.getBalance());
   }
+
+  @Test
+  @DisplayName("gets current balance")
+  void getBalance_1() {
+    BankAccount account = new BankAccount();
+
+    assertEquals(new Money(0, 0), account.getBalance());
+  }
 }
