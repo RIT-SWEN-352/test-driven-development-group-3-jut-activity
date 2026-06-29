@@ -130,4 +130,13 @@ class MyStackTest {
     stack.push(5);
     assertEquals(5, stack.pop());
   }
+
+  @Test
+  @DisplayName("pop updates the stack size")
+  void pop_3() {
+    final MyStack<Integer> stack = new MyStack<>(5);
+    stack.push(5);
+    stack.pop();
+    assertEquals(0, stack.size());
+  }
 }
