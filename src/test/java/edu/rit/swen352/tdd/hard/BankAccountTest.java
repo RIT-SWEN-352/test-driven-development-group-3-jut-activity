@@ -17,4 +17,12 @@ class BankAccountTest {
     assertEquals(10, money.dollars());
     assertEquals(50, money.cents());
   }
+
+  @Test
+  @DisplayName("money should make sure dollars and cents are non-negative")
+  void money_2() {
+    assertThrows(IllegalArgumentException.class, () -> new Money(10, 100));
+    assertThrows(IllegalArgumentException.class, () -> new Money(10, -1));
+    assertThrows(IllegalArgumentException.class, () -> new Money(-1, 50));
+  }
 }
