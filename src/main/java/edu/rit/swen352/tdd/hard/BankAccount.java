@@ -86,5 +86,7 @@ public class BankAccount {
     return balance.dollars() == 0 && balance.cents() == 0;
   }
 
-  public void deposit(Money amount) {}
+  public void deposit(Money amount) {
+    this.balance = this.balance.add(amount);
+  }
 }
