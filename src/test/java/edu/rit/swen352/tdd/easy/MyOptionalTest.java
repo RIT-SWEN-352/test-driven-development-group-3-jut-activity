@@ -81,7 +81,7 @@ class MyOptionalTest {
   }
 
   @Test
-  @DisplayName("if value present execute consumer")
+  @DisplayName("if value empty should not execute consumer")
   void ifPresentConsumer_2() {
     AtomicBoolean executed = new AtomicBoolean(false);
     MyOptional<String> optional = MyOptional.empty();
