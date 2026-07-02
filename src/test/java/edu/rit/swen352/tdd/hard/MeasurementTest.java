@@ -302,4 +302,14 @@ class MeasurementTest {
             () -> assertEquals("m/s", result.getUnits())
         );
     }
+    @Test
+    void divide_measurementWithZeroValueThrowsException() {
+        Measurement left = new Measurement(10.0, "m");
+        Measurement right = new Measurement(0.0, "s");
+
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> left.divide(right)
+        );
+    }
 }
