@@ -85,4 +85,26 @@ class MeasurementTest {
             () -> assertEquals("cm", converted.getUnits())
         );
     }
+    @ParameterizedTest
+    @CsvSource({
+        "60.0, s, 1.0, min",
+        "1.0, min, 60.0, s",
+        "1.0, hr, 60.0, min",
+        "3600.0, s, 1.0, hr"
+    })
+    void convertTo_timeUnitsConvertsCorrectly(
+        double originalValue,
+        String originalUnits,
+        double expectedValue,
+        String targetUnits
+    ) {
+        Measurement measurement = new Measurement(originalValue, originalUnits);
+
+        Measurement converted = measurement.convertTo(targetUnits);
+
+        assertAll(
+            () -> assertEquals(expectedValue, converted.getValue(), 0.0001),
+            () -> assertEquals(targetUnits, converted.getUnits())
+        );
+    }
 }
