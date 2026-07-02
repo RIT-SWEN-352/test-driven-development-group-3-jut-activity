@@ -180,4 +180,9 @@ public class Measurement {
 
         return leftUnits + "*" + rightUnits;
     }
+
+    public Measurement divide(double scalar) {
+        assert false : "NYI";
+        return null;
+    }
 }
