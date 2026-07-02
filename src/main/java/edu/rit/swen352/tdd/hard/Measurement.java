@@ -168,4 +168,9 @@ public class Measurement {
     public Measurement multiply(double scalar) {
         return new Measurement(this.value * scalar, this.units);
     }
+
+    public Measurement multiply(Measurement other) {
+        assert false : "NYI";
+        return null;
+    }
 }

@@ -231,4 +231,16 @@ class MeasurementTest {
             () -> assertEquals("m", result.getUnits())
         );
     }
+    @Test
+    void multiply_sameUnitsCombinesUnits() {
+        Measurement left = new Measurement(2.0, "m");
+        Measurement right = new Measurement(3.0, "m");
+
+        Measurement result = left.multiply(right);
+
+        assertAll(
+            () -> assertEquals(6.0, result.getValue(), 0.0001),
+            () -> assertEquals("m^2", result.getUnits())
+        );
+    }
 }
