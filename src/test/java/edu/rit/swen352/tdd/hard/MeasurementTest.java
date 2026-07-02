@@ -162,4 +162,14 @@ class MeasurementTest {
             () -> assertEquals("m", result.getUnits())
         );
     }
+    @Test
+    void add_incompatibleUnitsThrowsException() {
+        Measurement left = new Measurement(5.0, "m");
+        Measurement right = new Measurement(3.0, "s");
+
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> left.add(right)
+        );
+    }
 }
