@@ -2,6 +2,8 @@ package edu.rit.swen352.tdd.hard;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -9,6 +11,29 @@ import static org.junit.jupiter.api.Assertions.*;
  * Test suite for the {@link Measurement} component.
  */
 class MeasurementTest {
+    @ParameterizedTest
+    @CsvSource({
+        "100.0, cm, 1.0, m",
+        "1.0, m, 100.0, cm",
+        "1.0, ft, 12.0, in",
+        "1.0, mi, 1.609344, km",
+        "1.0, km, 1000.0, m"
+    })
+    void convertTo_lengthUnitsConvertsCorrectly(
+        double originalValue,
+        String originalUnits,
+        double expectedValue,
+        String targetUnits
+    ) {
+        Measurement measurement = new Measurement(originalValue, originalUnits);
+
+        Measurement converted = measurement.convertTo(targetUnits);
+
+        assertAll(
+            () -> assertEquals(expectedValue, converted.getValue(), 0.0001),
+            () -> assertEquals(targetUnits, converted.getUnits())
+        );
+    }
     @Test
     void ctor_valueAndUnitsCreatesMeasurement() {
         Measurement measurement = new Measurement(9.8, "m/s^2");
