@@ -74,6 +74,10 @@ public class Measurement {
     private final String units;
 
     public Measurement(double value, String units) {
+        if (units == null) {
+            throw new IllegalArgumentException("Units cannot be null.");
+        }
+
         this.value = value;
         this.units = units;
     }
@@ -85,7 +89,7 @@ public class Measurement {
     public String getUnits() {
         return units;
     }
-    
+
     @Override
     public String toString() {
         return value + units;
