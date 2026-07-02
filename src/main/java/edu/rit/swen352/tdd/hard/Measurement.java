@@ -190,6 +190,10 @@ public class Measurement {
     }
 
     public Measurement divide(Measurement other) {
+        if (this.units.equals(other.units)) {
+            return new Measurement(this.value / other.value, "1");
+        }
+
         assert false : "NYI";
         return null;
     }
