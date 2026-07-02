@@ -172,4 +172,16 @@ class MeasurementTest {
             () -> left.add(right)
         );
     }
+    @Test
+    void subtract_sameUnitsSubtractsValues() {
+        Measurement left = new Measurement(8.0, "m");
+        Measurement right = new Measurement(3.0, "m");
+
+        Measurement result = left.subtract(right);
+
+        assertAll(
+            () -> assertEquals(5.0, result.getValue(), 0.0001),
+            () -> assertEquals("m", result.getUnits())
+        );
+    }
 }

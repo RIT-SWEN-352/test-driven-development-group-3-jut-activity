@@ -159,4 +159,9 @@ public class Measurement {
         Measurement converted = other.convertTo(this.units);
         return new Measurement(this.value + converted.value, this.units);
     }
+
+    public Measurement subtract(Measurement other) {
+        assert false : "NYI";
+        return null;
+    }
 }
