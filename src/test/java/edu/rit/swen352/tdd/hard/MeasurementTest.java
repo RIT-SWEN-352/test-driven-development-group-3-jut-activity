@@ -2,6 +2,8 @@ package edu.rit.swen352.tdd.hard;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -9,5 +11,305 @@ import static org.junit.jupiter.api.Assertions.*;
  * Test suite for the {@link Measurement} component.
  */
 class MeasurementTest {
+    @ParameterizedTest
+    @CsvSource({
+        "100.0, cm, 1.0, m",
+        "1.0, m, 100.0, cm",
+        "1.0, ft, 12.0, in",
+        "1.0, mi, 1.609344, km",
+        "1.0, km, 1000.0, m"
+    })
+    void convertTo_lengthUnitsConvertsCorrectly(
+        double originalValue,
+        String originalUnits,
+        double expectedValue,
+        String targetUnits
+    ) {
+        Measurement measurement = new Measurement(originalValue, originalUnits);
 
+        Measurement converted = measurement.convertTo(targetUnits);
+
+        assertAll(
+            () -> assertEquals(expectedValue, converted.getValue(), 0.0001),
+            () -> assertEquals(targetUnits, converted.getUnits())
+        );
+    }
+    @Test
+    void ctor_valueAndUnitsCreatesMeasurement() {
+        Measurement measurement = new Measurement(9.8, "m/s^2");
+
+        assertAll(
+            () -> assertEquals(9.8, measurement.getValue()),
+            () -> assertEquals("m/s^2", measurement.getUnits())
+        );
+    }
+    @Test
+    void toString_formatsValueAndUnits() {
+        Measurement measurement = new Measurement(9.8, "m/s^2");
+
+        assertEquals("9.8m/s^2", measurement.toString());
+    }
+    @Test
+    void ctor_nullUnitsThrowsException() {
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> new Measurement(10.0, null)
+        );
+    }
+    void ctor_blankUnitsThrowsException() {
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> new Measurement(10.0, " ")
+        );
+    }
+    @Test
+    void convertTo_sameUnitsReturnsEquivalentMeasurement() {
+        Measurement measurement = new Measurement(5.0, "m");
+
+        Measurement converted = measurement.convertTo("m");
+
+        assertAll(
+            () -> assertEquals(5.0, converted.getValue()),
+            () -> assertEquals("m", converted.getUnits()),
+            () -> assertNotSame(measurement, converted)
+        );
+    }
+    @Test
+    void convertTo_inchesToCentimeters() {
+        Measurement measurement = new Measurement(1.0, "in");
+
+        Measurement converted = measurement.convertTo("cm");
+
+        assertAll(
+            () -> assertEquals(2.54, converted.getValue(), 0.0001),
+            () -> assertEquals("cm", converted.getUnits())
+        );
+    }
+    @ParameterizedTest
+    @CsvSource({
+        "60.0, s, 1.0, min",
+        "1.0, min, 60.0, s",
+        "1.0, hr, 60.0, min",
+        "3600.0, s, 1.0, hr"
+    })
+    void convertTo_timeUnitsConvertsCorrectly(
+        double originalValue,
+        String originalUnits,
+        double expectedValue,
+        String targetUnits
+    ) {
+        Measurement measurement = new Measurement(originalValue, originalUnits);
+
+        Measurement converted = measurement.convertTo(targetUnits);
+
+        assertAll(
+            () -> assertEquals(expectedValue, converted.getValue(), 0.0001),
+            () -> assertEquals(targetUnits, converted.getUnits())
+        );
+    }
+    @ParameterizedTest
+    @CsvSource({
+        "1000.0, g, 1.0, kg",
+        "1.0, kg, 1000.0, g",
+        "1.0, lb, 0.45359237, kg",
+        "1.0, kg, 2.20462262, lb"
+    })
+    void convertTo_massUnitsConvertsCorrectly(
+        double originalValue,
+        String originalUnits,
+        double expectedValue,
+        String targetUnits
+    ) {
+        Measurement measurement = new Measurement(originalValue, originalUnits);
+
+        Measurement converted = measurement.convertTo(targetUnits);
+
+        assertAll(
+            () -> assertEquals(expectedValue, converted.getValue(), 0.0001),
+            () -> assertEquals(targetUnits, converted.getUnits())
+        );
+    }
+    @Test
+    void convertTo_incompatibleUnitsThrowsException() {
+        Measurement measurement = new Measurement(5.0, "m");
+
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> measurement.convertTo("s")
+        );
+    }
+    @Test
+    void add_sameUnitsAddsValues() {
+        Measurement left = new Measurement(5.0, "m");
+        Measurement right = new Measurement(3.0, "m");
+
+        Measurement result = left.add(right);
+
+        assertAll(
+            () -> assertEquals(8.0, result.getValue(), 0.0001),
+            () -> assertEquals("m", result.getUnits())
+        );
+    }
+    @Test
+    void add_compatibleUnitsConvertsArgumentBeforeAdding() {
+        Measurement left = new Measurement(1.0, "m");
+        Measurement right = new Measurement(100.0, "cm");
+
+        Measurement result = left.add(right);
+
+        assertAll(
+            () -> assertEquals(2.0, result.getValue(), 0.0001),
+            () -> assertEquals("m", result.getUnits())
+        );
+    }
+    @Test
+    void add_incompatibleUnitsThrowsException() {
+        Measurement left = new Measurement(5.0, "m");
+        Measurement right = new Measurement(3.0, "s");
+
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> left.add(right)
+        );
+    }
+    @Test
+    void subtract_sameUnitsSubtractsValues() {
+        Measurement left = new Measurement(8.0, "m");
+        Measurement right = new Measurement(3.0, "m");
+
+        Measurement result = left.subtract(right);
+
+        assertAll(
+            () -> assertEquals(5.0, result.getValue(), 0.0001),
+            () -> assertEquals("m", result.getUnits())
+        );
+    }
+    @Test
+    void subtract_compatibleUnitsConvertsArgumentBeforeSubtracting() {
+        Measurement left = new Measurement(1.0, "m");
+        Measurement right = new Measurement(50.0, "cm");
+
+        Measurement result = left.subtract(right);
+
+        assertAll(
+            () -> assertEquals(0.5, result.getValue(), 0.0001),
+            () -> assertEquals("m", result.getUnits())
+        );
+    }
+    @Test
+    void subtract_incompatibleUnitsThrowsException() {
+        Measurement left = new Measurement(5.0, "m");
+        Measurement right = new Measurement(3.0, "kg");
+
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> left.subtract(right)
+        );
+    }
+    @Test
+    void add_doesNotModifyOriginalMeasurements() {
+        Measurement left = new Measurement(1.0, "m");
+        Measurement right = new Measurement(100.0, "cm");
+
+        left.add(right);
+
+        assertAll(
+            () -> assertEquals(1.0, left.getValue(), 0.0001),
+            () -> assertEquals("m", left.getUnits()),
+            () -> assertEquals(100.0, right.getValue(), 0.0001),
+            () -> assertEquals("cm", right.getUnits())
+        );
+    }
+    @Test
+    void multiply_scalarMultipliesValueAndKeepsUnits() {
+        Measurement measurement = new Measurement(5.0, "m");
+
+        Measurement result = measurement.multiply(2.0);
+
+        assertAll(
+            () -> assertEquals(10.0, result.getValue(), 0.0001),
+            () -> assertEquals("m", result.getUnits())
+        );
+    }
+    @Test
+    void multiply_sameUnitsCombinesUnits() {
+        Measurement left = new Measurement(2.0, "m");
+        Measurement right = new Measurement(3.0, "m");
+
+        Measurement result = left.multiply(right);
+
+        assertAll(
+            () -> assertEquals(6.0, result.getValue(), 0.0001),
+            () -> assertEquals("m^2", result.getUnits())
+        );
+    }
+    @Test
+    void multiply_differentUnitsCombinesUnits() {
+        Measurement mass = new Measurement(2.0, "kg");
+        Measurement acceleration = new Measurement(9.8, "m/s^2");
+
+        Measurement result = mass.multiply(acceleration);
+
+        assertAll(
+            () -> assertEquals(19.6, result.getValue(), 0.0001),
+            () -> assertEquals("kg*m/s^2", result.getUnits())
+        );
+    }
+
+    @Test
+    void divide_scalarZeroThrowsException() {
+        Measurement measurement = new Measurement(10.0, "m");
+
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> measurement.divide(0.0)
+        );
+    }
+    @Test
+    void divide_sameUnitsReturnsUnitlessMeasurement() {
+        Measurement left = new Measurement(10.0, "m");
+        Measurement right = new Measurement(2.0, "m");
+
+        Measurement result = left.divide(right);
+
+        assertAll(
+            () -> assertEquals(5.0, result.getValue(), 0.0001),
+            () -> assertEquals("1", result.getUnits())
+        );
+    }
+
+    @Test
+    void divide_compatibleUnitsConvertsArgumentAndReturnsUnitlessMeasurement() {
+        Measurement left = new Measurement(1.0, "m");
+        Measurement right = new Measurement(50.0, "cm");
+
+        Measurement result = left.divide(right);
+
+        assertAll(
+            () -> assertEquals(2.0, result.getValue(), 0.0001),
+            () -> assertEquals("1", result.getUnits())
+        );
+    }
+    @Test
+    void divide_differentUnitsCombinesUnits() {
+        Measurement distance = new Measurement(10.0, "m");
+        Measurement time = new Measurement(2.0, "s");
+
+        Measurement result = distance.divide(time);
+
+        assertAll(
+            () -> assertEquals(5.0, result.getValue(), 0.0001),
+            () -> assertEquals("m/s", result.getUnits())
+        );
+    }
+    @Test
+    void divide_measurementWithZeroValueThrowsException() {
+        Measurement left = new Measurement(10.0, "m");
+        Measurement right = new Measurement(0.0, "s");
+
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> left.divide(right)
+        );
+    }
 }

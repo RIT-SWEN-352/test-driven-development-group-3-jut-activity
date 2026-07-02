@@ -1,5 +1,7 @@
 package edu.rit.swen352.tdd.hard;
 
+import java.util.Map;
+
 /**
  * A Measurement is a numeric value with a unit of measure.
  * Examples: 100kg, 5280ft, 47m^2, 55mph, and 9.8m/s^2.
@@ -69,4 +71,142 @@ package edu.rit.swen352.tdd.hard;
  *
  */
 public class Measurement {
+
+    private final double value;
+    private final String units;
+    private static final Map<String, Double> LENGTH_TO_METERS = Map.of(
+        "m", 1.0,
+        "cm", 0.01,
+        "in", 0.0254,
+        "ft", 0.3048,
+        "km", 1000.0,
+        "mi", 1609.344
+    );
+    private static final Map<String, Double> TIME_TO_SECONDS = Map.of(
+        "s", 1.0,
+        "min", 60.0,
+        "hr", 3600.0
+    );
+    private static final Map<String, Double> MASS_TO_KILOGRAMS = Map.of(
+        "kg", 1.0,
+        "g", 0.001,
+        "lb", 0.45359237
+    );
+
+    public Measurement(double value, String units) {
+        if (units == null) {
+            throw new IllegalArgumentException("Units cannot be null.");
+        }
+        if (units.isBlank()) {
+            throw new IllegalArgumentException("Units cannot be blank.");
+        }
+
+        this.value = value;
+        this.units = units;
+    }
+
+    public double getValue() {
+        return value;
+    }
+
+    public String getUnits() {
+        return units;
+    }
+
+    @Override
+    public String toString() {
+        return value + units;
+    }
+
+    public Measurement convertTo(String targetUnits) {
+        if (units.equals(targetUnits)) {
+            return new Measurement(value, units);
+        }
+
+        if (isLength(units) && isLength(targetUnits)) {
+            double meters = value * LENGTH_TO_METERS.get(units);
+            double convertedValue = meters / LENGTH_TO_METERS.get(targetUnits);
+            return new Measurement(convertedValue, targetUnits);
+        }
+
+        if (isTime(units) && isTime(targetUnits)) {
+            double seconds = value * TIME_TO_SECONDS.get(units);
+            double convertedValue = seconds / TIME_TO_SECONDS.get(targetUnits);
+            return new Measurement(convertedValue, targetUnits);
+        }
+
+        if (isMass(units) && isMass(targetUnits)) {
+            double kilograms = value * MASS_TO_KILOGRAMS.get(units);
+            double convertedValue = kilograms / MASS_TO_KILOGRAMS.get(targetUnits);
+            return new Measurement(convertedValue, targetUnits);
+        }
+
+        throw new IllegalArgumentException("Incompatible units.");
+    }
+    private static boolean isLength(String units) {
+        return LENGTH_TO_METERS.containsKey(units);
+    }
+
+    private static boolean isTime(String units) {
+        return TIME_TO_SECONDS.containsKey(units);
+    }
+
+    private static boolean isMass(String units) {
+        return MASS_TO_KILOGRAMS.containsKey(units);
+    }
+
+    public Measurement add(Measurement other) {
+        Measurement converted = other.convertTo(this.units);
+        return new Measurement(this.value + converted.value, this.units);
+    }
+
+    public Measurement subtract(Measurement other) {
+        Measurement converted = other.convertTo(this.units);
+        return new Measurement(this.value - converted.value, this.units);
+    }
+
+    public Measurement multiply(double scalar) {
+        return new Measurement(this.value * scalar, this.units);
+    }
+
+    public Measurement multiply(Measurement other) {
+        return new Measurement(this.value * other.value, multiplyUnits(this.units, other.units));
+    }
+
+    private static String multiplyUnits(String leftUnits, String rightUnits) {
+        if (leftUnits.equals(rightUnits)) {
+            return leftUnits + "^2";
+        }
+
+        return leftUnits + "*" + rightUnits;
+    }
+
+    public Measurement divide(double scalar) {
+        if (scalar == 0.0) {
+            throw new IllegalArgumentException("Cannot divide by zero.");
+        }
+
+        return new Measurement(this.value / scalar, this.units);
+    }
+
+    public Measurement divide(Measurement other) {
+        if (other.value == 0.0) {
+            throw new IllegalArgumentException("Cannot divide by zero.");
+        }
+
+        try {
+            Measurement converted = other.convertTo(this.units);
+            return new Measurement(this.value / converted.value, "1");
+        } catch (IllegalArgumentException exception) {
+            return new Measurement(this.value / other.value, divideUnits(this.units, other.units));
+        }
+    }
+
+    private static String divideUnits(String leftUnits, String rightUnits) {
+        if (leftUnits.equals(rightUnits)) {
+            return "1";
+        }
+
+        return leftUnits + "/" + rightUnits;
+    }
 }
