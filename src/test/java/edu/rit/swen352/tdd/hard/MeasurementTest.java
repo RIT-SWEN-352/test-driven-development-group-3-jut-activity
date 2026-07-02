@@ -18,4 +18,10 @@ class MeasurementTest {
             () -> assertEquals("m/s^2", measurement.getUnits())
         );
     }
+    @Test
+    void toString_formatsValueAndUnits() {
+        Measurement measurement = new Measurement(9.8, "m/s^2");
+
+        assertEquals("9.8m/s^2", measurement.toString());
+    }
 }
