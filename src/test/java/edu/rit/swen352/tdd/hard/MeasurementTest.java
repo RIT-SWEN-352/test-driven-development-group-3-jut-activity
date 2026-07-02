@@ -129,4 +129,13 @@ class MeasurementTest {
             () -> assertEquals(targetUnits, converted.getUnits())
         );
     }
+    @Test
+    void convertTo_incompatibleUnitsThrowsException() {
+        Measurement measurement = new Measurement(5.0, "m");
+
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> measurement.convertTo("s")
+        );
+    }
 }
