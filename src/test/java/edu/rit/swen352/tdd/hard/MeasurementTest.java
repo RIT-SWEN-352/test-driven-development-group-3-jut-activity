@@ -37,4 +37,16 @@ class MeasurementTest {
             () -> new Measurement(10.0, " ")
         );
     }
+    @Test
+    void convertTo_sameUnitsReturnsEquivalentMeasurement() {
+        Measurement measurement = new Measurement(5.0, "m");
+
+        Measurement converted = measurement.convertTo("m");
+
+        assertAll(
+            () -> assertEquals(5.0, converted.getValue()),
+            () -> assertEquals("m", converted.getUnits()),
+            () -> assertNotSame(measurement, converted)
+        );
+    }
 }

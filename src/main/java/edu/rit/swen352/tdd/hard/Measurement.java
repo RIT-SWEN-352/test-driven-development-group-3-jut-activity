@@ -97,4 +97,9 @@ public class Measurement {
     public String toString() {
         return value + units;
     }
+
+    public Measurement convertTo(String targetUnits) {
+        assert false : "NYI";
+        return null;
+    }
 }
