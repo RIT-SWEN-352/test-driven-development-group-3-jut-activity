@@ -103,6 +103,10 @@ public class Measurement {
             return new Measurement(value, units);
         }
 
+        if (units.equals("in") && targetUnits.equals("cm")) {
+            return new Measurement(value * 2.54, "cm");
+        }
+
         assert false : "NYI";
         return null;
     }
