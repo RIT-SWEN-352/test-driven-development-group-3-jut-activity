@@ -49,4 +49,15 @@ class MeasurementTest {
             () -> assertNotSame(measurement, converted)
         );
     }
+    @Test
+    void convertTo_inchesToCentimeters() {
+        Measurement measurement = new Measurement(1.0, "in");
+
+        Measurement converted = measurement.convertTo("cm");
+
+        assertAll(
+            () -> assertEquals(2.54, converted.getValue(), 0.0001),
+            () -> assertEquals("cm", converted.getUnits())
+        );
+    }
 }
