@@ -99,6 +99,10 @@ public class Measurement {
     }
 
     public Measurement convertTo(String targetUnits) {
+        if (units.equals(targetUnits)) {
+            return new Measurement(value, units);
+        }
+
         assert false : "NYI";
         return null;
     }
