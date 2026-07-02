@@ -77,6 +77,9 @@ public class Measurement {
         if (units == null) {
             throw new IllegalArgumentException("Units cannot be null.");
         }
+        if (units.isBlank()) {
+            throw new IllegalArgumentException("Units cannot be blank.");
+        }
 
         this.value = value;
         this.units = units;
