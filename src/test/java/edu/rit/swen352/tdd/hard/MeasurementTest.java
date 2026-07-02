@@ -24,4 +24,11 @@ class MeasurementTest {
 
         assertEquals("9.8m/s^2", measurement.toString());
     }
+    @Test
+    void ctor_nullUnitsThrowsException() {
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> new Measurement(10.0, null)
+        );
+    }
 }
