@@ -141,8 +141,7 @@ public class Measurement {
             return new Measurement(convertedValue, targetUnits);
         }
 
-        assert false : "NYI";
-        return null;
+        throw new IllegalArgumentException("Incompatible units.");
     }
     private static boolean isLength(String units) {
         return LENGTH_TO_METERS.containsKey(units);
