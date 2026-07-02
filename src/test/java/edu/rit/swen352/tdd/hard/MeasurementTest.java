@@ -184,4 +184,16 @@ class MeasurementTest {
             () -> assertEquals("m", result.getUnits())
         );
     }
+    @Test
+    void subtract_compatibleUnitsConvertsArgumentBeforeSubtracting() {
+        Measurement left = new Measurement(1.0, "m");
+        Measurement right = new Measurement(50.0, "cm");
+
+        Measurement result = left.subtract(right);
+
+        assertAll(
+            () -> assertEquals(0.5, result.getValue(), 0.0001),
+            () -> assertEquals("m", result.getUnits())
+        );
+    }
 }
