@@ -220,4 +220,15 @@ class MeasurementTest {
             () -> assertEquals("cm", right.getUnits())
         );
     }
+    @Test
+    void multiply_scalarMultipliesValueAndKeepsUnits() {
+        Measurement measurement = new Measurement(5.0, "m");
+
+        Measurement result = measurement.multiply(2.0);
+
+        assertAll(
+            () -> assertEquals(10.0, result.getValue(), 0.0001),
+            () -> assertEquals("m", result.getUnits())
+        );
+    }
 }
