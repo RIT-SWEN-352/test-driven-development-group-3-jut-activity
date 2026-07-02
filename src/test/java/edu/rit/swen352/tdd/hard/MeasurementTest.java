@@ -107,4 +107,26 @@ class MeasurementTest {
             () -> assertEquals(targetUnits, converted.getUnits())
         );
     }
+    @ParameterizedTest
+    @CsvSource({
+        "1000.0, g, 1.0, kg",
+        "1.0, kg, 1000.0, g",
+        "1.0, lb, 0.45359237, kg",
+        "1.0, kg, 2.20462262, lb"
+    })
+    void convertTo_massUnitsConvertsCorrectly(
+        double originalValue,
+        String originalUnits,
+        double expectedValue,
+        String targetUnits
+    ) {
+        Measurement measurement = new Measurement(originalValue, originalUnits);
+
+        Measurement converted = measurement.convertTo(targetUnits);
+
+        assertAll(
+            () -> assertEquals(expectedValue, converted.getValue(), 0.0001),
+            () -> assertEquals(targetUnits, converted.getUnits())
+        );
+    }
 }
