@@ -138,4 +138,16 @@ class MeasurementTest {
             () -> measurement.convertTo("s")
         );
     }
+    @Test
+    void add_sameUnitsAddsValues() {
+        Measurement left = new Measurement(5.0, "m");
+        Measurement right = new Measurement(3.0, "m");
+
+        Measurement result = left.add(right);
+
+        assertAll(
+            () -> assertEquals(8.0, result.getValue(), 0.0001),
+            () -> assertEquals("m", result.getUnits())
+        );
+    }
 }

@@ -154,4 +154,9 @@ public class Measurement {
     private static boolean isMass(String units) {
         return MASS_TO_KILOGRAMS.containsKey(units);
     }
+
+    public Measurement add(Measurement other) {
+        assert false : "NYI";
+        return null;
+    }
 }
