@@ -87,6 +87,11 @@ public class Measurement {
         "min", 60.0,
         "hr", 3600.0
     );
+    private static final Map<String, Double> MASS_TO_KILOGRAMS = Map.of(
+        "kg", 1.0,
+        "g", 0.001,
+        "lb", 0.45359237
+    );
 
     public Measurement(double value, String units) {
         if (units == null) {
@@ -130,14 +135,24 @@ public class Measurement {
             return new Measurement(convertedValue, targetUnits);
         }
 
+        if (isMass(units) && isMass(targetUnits)) {
+            double kilograms = value * MASS_TO_KILOGRAMS.get(units);
+            double convertedValue = kilograms / MASS_TO_KILOGRAMS.get(targetUnits);
+            return new Measurement(convertedValue, targetUnits);
+        }
+
         assert false : "NYI";
         return null;
     }
     private static boolean isLength(String units) {
         return LENGTH_TO_METERS.containsKey(units);
     }
-    
+
     private static boolean isTime(String units) {
         return TIME_TO_SECONDS.containsKey(units);
+    }
+
+    private static boolean isMass(String units) {
+        return MASS_TO_KILOGRAMS.containsKey(units);
     }
 }
