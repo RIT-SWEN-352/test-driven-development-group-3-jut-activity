@@ -243,4 +243,16 @@ class MeasurementTest {
             () -> assertEquals("m^2", result.getUnits())
         );
     }
+    @Test
+    void multiply_differentUnitsCombinesUnits() {
+        Measurement mass = new Measurement(2.0, "kg");
+        Measurement acceleration = new Measurement(9.8, "m/s^2");
+
+        Measurement result = mass.multiply(acceleration);
+
+        assertAll(
+            () -> assertEquals(19.6, result.getValue(), 0.0001),
+            () -> assertEquals("kg*m/s^2", result.getUnits())
+        );
+    }
 }
