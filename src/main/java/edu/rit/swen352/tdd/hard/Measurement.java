@@ -194,8 +194,15 @@ public class Measurement {
             Measurement converted = other.convertTo(this.units);
             return new Measurement(this.value / converted.value, "1");
         } catch (IllegalArgumentException exception) {
-            assert false : "NYI";
-            return null;
+            return new Measurement(this.value / other.value, divideUnits(this.units, other.units));
         }
+    }
+
+    private static String divideUnits(String leftUnits, String rightUnits) {
+        if (leftUnits.equals(rightUnits)) {
+            return "1";
+        }
+
+        return leftUnits + "/" + rightUnits;
     }
 }
