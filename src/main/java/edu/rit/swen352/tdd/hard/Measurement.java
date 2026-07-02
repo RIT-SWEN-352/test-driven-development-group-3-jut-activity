@@ -182,6 +182,10 @@ public class Measurement {
     }
 
     public Measurement divide(double scalar) {
+        if (scalar == 0.0) {
+            throw new IllegalArgumentException("Cannot divide by zero.");
+        }
+
         return new Measurement(this.value / scalar, this.units);
     }
 }
