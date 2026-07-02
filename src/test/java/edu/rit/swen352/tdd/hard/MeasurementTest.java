@@ -277,4 +277,17 @@ class MeasurementTest {
             () -> assertEquals("1", result.getUnits())
         );
     }
+
+    @Test
+    void divide_compatibleUnitsConvertsArgumentAndReturnsUnitlessMeasurement() {
+        Measurement left = new Measurement(1.0, "m");
+        Measurement right = new Measurement(50.0, "cm");
+
+        Measurement result = left.divide(right);
+
+        assertAll(
+            () -> assertEquals(2.0, result.getValue(), 0.0001),
+            () -> assertEquals("1", result.getUnits())
+        );
+    }
 }
