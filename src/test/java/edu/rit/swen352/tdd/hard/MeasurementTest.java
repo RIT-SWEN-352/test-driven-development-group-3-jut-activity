@@ -206,4 +206,18 @@ class MeasurementTest {
             () -> left.subtract(right)
         );
     }
+    @Test
+    void add_doesNotModifyOriginalMeasurements() {
+        Measurement left = new Measurement(1.0, "m");
+        Measurement right = new Measurement(100.0, "cm");
+
+        left.add(right);
+
+        assertAll(
+            () -> assertEquals(1.0, left.getValue(), 0.0001),
+            () -> assertEquals("m", left.getUnits()),
+            () -> assertEquals(100.0, right.getValue(), 0.0001),
+            () -> assertEquals("cm", right.getUnits())
+        );
+    }
 }
