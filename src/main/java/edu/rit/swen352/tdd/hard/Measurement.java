@@ -170,7 +170,14 @@ public class Measurement {
     }
 
     public Measurement multiply(Measurement other) {
-        assert false : "NYI";
-        return null;
+        return new Measurement(this.value * other.value, multiplyUnits(this.units, other.units));
+    }
+
+    private static String multiplyUnits(String leftUnits, String rightUnits) {
+        if (leftUnits.equals(rightUnits)) {
+            return leftUnits + "^2";
+        }
+
+        return leftUnits + "*" + rightUnits;
     }
 }
