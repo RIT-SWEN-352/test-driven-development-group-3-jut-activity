@@ -150,4 +150,16 @@ class MeasurementTest {
             () -> assertEquals("m", result.getUnits())
         );
     }
+    @Test
+    void add_compatibleUnitsConvertsArgumentBeforeAdding() {
+        Measurement left = new Measurement(1.0, "m");
+        Measurement right = new Measurement(100.0, "cm");
+
+        Measurement result = left.add(right);
+
+        assertAll(
+            () -> assertEquals(2.0, result.getValue(), 0.0001),
+            () -> assertEquals("m", result.getUnits())
+        );
+    }
 }
