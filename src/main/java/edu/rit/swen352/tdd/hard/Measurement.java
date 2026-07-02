@@ -190,6 +190,10 @@ public class Measurement {
     }
 
     public Measurement divide(Measurement other) {
+        if (other.value == 0.0) {
+            throw new IllegalArgumentException("Cannot divide by zero.");
+        }
+
         try {
             Measurement converted = other.convertTo(this.units);
             return new Measurement(this.value / converted.value, "1");
