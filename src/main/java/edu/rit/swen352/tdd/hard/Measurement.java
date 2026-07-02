@@ -190,11 +190,12 @@ public class Measurement {
     }
 
     public Measurement divide(Measurement other) {
-        if (this.units.equals(other.units)) {
-            return new Measurement(this.value / other.value, "1");
+        try {
+            Measurement converted = other.convertTo(this.units);
+            return new Measurement(this.value / converted.value, "1");
+        } catch (IllegalArgumentException exception) {
+            assert false : "NYI";
+            return null;
         }
-
-        assert false : "NYI";
-        return null;
     }
 }
