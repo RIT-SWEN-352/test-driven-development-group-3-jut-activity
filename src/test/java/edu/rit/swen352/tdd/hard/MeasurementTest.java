@@ -290,4 +290,16 @@ class MeasurementTest {
             () -> assertEquals("1", result.getUnits())
         );
     }
+    @Test
+    void divide_differentUnitsCombinesUnits() {
+        Measurement distance = new Measurement(10.0, "m");
+        Measurement time = new Measurement(2.0, "s");
+
+        Measurement result = distance.divide(time);
+
+        assertAll(
+            () -> assertEquals(5.0, result.getValue(), 0.0001),
+            () -> assertEquals("m/s", result.getUnits())
+        );
+    }
 }
