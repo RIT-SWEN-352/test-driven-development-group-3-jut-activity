@@ -82,6 +82,11 @@ public class Measurement {
         "km", 1000.0,
         "mi", 1609.344
     );
+    private static final Map<String, Double> TIME_TO_SECONDS = Map.of(
+        "s", 1.0,
+        "min", 60.0,
+        "hr", 3600.0
+    );
 
     public Measurement(double value, String units) {
         if (units == null) {
@@ -119,10 +124,20 @@ public class Measurement {
             return new Measurement(convertedValue, targetUnits);
         }
 
+        if (isTime(units) && isTime(targetUnits)) {
+            double seconds = value * TIME_TO_SECONDS.get(units);
+            double convertedValue = seconds / TIME_TO_SECONDS.get(targetUnits);
+            return new Measurement(convertedValue, targetUnits);
+        }
+
         assert false : "NYI";
         return null;
     }
     private static boolean isLength(String units) {
         return LENGTH_TO_METERS.containsKey(units);
+    }
+    
+    private static boolean isTime(String units) {
+        return TIME_TO_SECONDS.containsKey(units);
     }
 }
