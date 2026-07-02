@@ -255,4 +255,14 @@ class MeasurementTest {
             () -> assertEquals("kg*m/s^2", result.getUnits())
         );
     }
+
+    @Test
+    void divide_scalarZeroThrowsException() {
+        Measurement measurement = new Measurement(10.0, "m");
+
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> measurement.divide(0.0)
+        );
+    }
 }
