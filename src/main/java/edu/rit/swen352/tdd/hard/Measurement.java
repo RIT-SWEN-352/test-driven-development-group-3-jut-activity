@@ -182,7 +182,6 @@ public class Measurement {
     }
 
     public Measurement divide(double scalar) {
-        assert false : "NYI";
-        return null;
+        return new Measurement(this.value / scalar, this.units);
     }
 }
