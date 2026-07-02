@@ -69,17 +69,20 @@ package edu.rit.swen352.tdd.hard;
  *
  */
 public class Measurement {
+
+    private final double value;
+    private final String units;
+
     public Measurement(double value, String units) {
-        assert false : "NYI";
+        this.value = value;
+        this.units = units;
     }
 
     public double getValue() {
-        assert false : "NYI";
-        return 0.0;
+        return value;
     }
 
     public String getUnits() {
-        assert false : "NYI";
-        return null;
+        return units;
     }
 }
