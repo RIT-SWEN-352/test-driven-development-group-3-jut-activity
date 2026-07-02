@@ -31,4 +31,10 @@ class MeasurementTest {
             () -> new Measurement(10.0, null)
         );
     }
+    void ctor_blankUnitsThrowsException() {
+        assertThrows(
+            IllegalArgumentException.class,
+            () -> new Measurement(10.0, " ")
+        );
+    }
 }
