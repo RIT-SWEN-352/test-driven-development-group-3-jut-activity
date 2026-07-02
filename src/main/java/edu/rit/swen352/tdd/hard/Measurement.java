@@ -1,5 +1,7 @@
 package edu.rit.swen352.tdd.hard;
 
+import java.util.Map;
+
 /**
  * A Measurement is a numeric value with a unit of measure.
  * Examples: 100kg, 5280ft, 47m^2, 55mph, and 9.8m/s^2.
@@ -72,6 +74,14 @@ public class Measurement {
 
     private final double value;
     private final String units;
+    private static final Map<String, Double> LENGTH_TO_METERS = Map.of(
+        "m", 1.0,
+        "cm", 0.01,
+        "in", 0.0254,
+        "ft", 0.3048,
+        "km", 1000.0,
+        "mi", 1609.344
+    );
 
     public Measurement(double value, String units) {
         if (units == null) {
@@ -103,11 +113,16 @@ public class Measurement {
             return new Measurement(value, units);
         }
 
-        if (units.equals("in") && targetUnits.equals("cm")) {
-            return new Measurement(value * 2.54, "cm");
+        if (isLength(units) && isLength(targetUnits)) {
+            double meters = value * LENGTH_TO_METERS.get(units);
+            double convertedValue = meters / LENGTH_TO_METERS.get(targetUnits);
+            return new Measurement(convertedValue, targetUnits);
         }
 
         assert false : "NYI";
         return null;
+    }
+    private static boolean isLength(String units) {
+        return LENGTH_TO_METERS.containsKey(units);
     }
 }
