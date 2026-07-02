@@ -85,9 +85,9 @@ public class Measurement {
     public String getUnits() {
         return units;
     }
+    
     @Override
     public String toString() {
-        assert false : "NYI";
-        return null;
+        return value + units;
     }
 }
