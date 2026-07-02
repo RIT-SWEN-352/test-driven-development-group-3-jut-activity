@@ -265,4 +265,16 @@ class MeasurementTest {
             () -> measurement.divide(0.0)
         );
     }
+    @Test
+    void divide_sameUnitsReturnsUnitlessMeasurement() {
+        Measurement left = new Measurement(10.0, "m");
+        Measurement right = new Measurement(2.0, "m");
+
+        Measurement result = left.divide(right);
+
+        assertAll(
+            () -> assertEquals(5.0, result.getValue(), 0.0001),
+            () -> assertEquals("1", result.getUnits())
+        );
+    }
 }
